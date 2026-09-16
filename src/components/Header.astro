@@ -1,0 +1,49 @@
+---
+import { site } from '../config/site';
+
+const currentPath = Astro.url.pathname;
+---
+
+<header class="site-header">
+  <div class="container header-content">
+    <a class="site-logo" href="/" aria-label={`${site.name} home`}>{site.name}</a>
+    <nav class="site-nav" aria-label="Primary navigation">
+      <a href="/#about" aria-current={currentPath === '/' ? 'page' : undefined}>About</a>
+      <a href="/projects" aria-current={currentPath === '/projects' ? 'page' : undefined}>Projects</a>
+      <a href="/blog" aria-current={currentPath.startsWith('/blog') ? 'page' : undefined}>Writing</a>
+      <a href="/notes" aria-current={currentPath === '/notes' ? 'page' : undefined}>Notes</a>
+    </nav>
+    <span class="header-status" aria-label="Website status">Available</span>
+    <button class="theme-toggle" type="button" data-theme-toggle aria-label="Change color theme">
+      <span aria-hidden="true">◐</span>
+      <span data-theme-label>System</span>
+    </button>
+  </div>
+</header>
+
+<script>
+  const themes = ['light', 'dark', 'system'] as const;
+  const themeToggle = document.querySelector<HTMLButtonElement>('[data-theme-toggle]');
+  const themeLabel = document.querySelector<HTMLElement>('[data-theme-label]');
+
+  function setTheme(theme: (typeof themes)[number]) {
+    document.documentElement.dataset.theme = theme;
+    try {
+      localStorage.setItem('theme-preference', theme);
+    } catch {
+      // Theme selection still works when storage is unavailable.
+    }
+    if (themeLabel) themeLabel.textContent = theme[0].toUpperCase() + theme.slice(1);
+    themeToggle?.setAttribute('aria-label', `Theme: ${theme}. Activate to change.`);
+  }
+
+  const initialTheme = themes.includes(document.documentElement.dataset.theme as (typeof themes)[number])
+    ? document.documentElement.dataset.theme as (typeof themes)[number]
+    : 'system';
+  setTheme(initialTheme);
+
+  themeToggle?.addEventListener('click', () => {
+    const currentIndex = themes.indexOf(document.documentElement.dataset.theme as (typeof themes)[number]);
+    setTheme(themes[(currentIndex + 1) % themes.length]);
+  });
+</script>

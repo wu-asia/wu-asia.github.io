@@ -1,0 +1,32 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+
+const posts = (await getCollection('blog', ({ data }) => !data.draft))
+  .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
+---
+
+<BaseLayout title="Blog" description="Example technical writing and notes.">
+  <section class="page-hero container">
+    <p class="eyebrow">Blog</p>
+    <h1>Notes and writing.</h1>
+    <p>Example content for the future technical blog.</p>
+  </section>
+
+  <section class="section container blog-list-section">
+    <div class="blog-list">
+      {posts.map((post) => (
+        <article class="blog-list-item">
+          <time datetime={post.data.date.toISOString()}>{post.data.date.toLocaleDateString('en', { year: 'numeric', month: 'short', day: 'numeric' })}</time>
+          <div>
+            <p class="eyebrow">{post.data.category}</p>
+            <h2><a href={`/blog/${post.id}`}>{post.data.title}</a></h2>
+            <p>{post.data.description}</p>
+            <ul class="tag-list" aria-label={`${post.data.title} tags`}>{post.data.tags.map((tag) => <li>{tag}</li>)}</ul>
+          </div>
+          <a class="post-arrow" href={`/blog/${post.id}`} aria-label={`Read ${post.data.title}`}>↗</a>
+        </article>
+      ))}
+    </div>
+  </section>
+</BaseLayout>

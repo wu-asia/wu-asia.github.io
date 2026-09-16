@@ -1,0 +1,19 @@
+---
+import ProjectCard from '../components/ProjectCard.astro';
+import { projects } from '../data/projects';
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout title="Projects" description="Selected projects by YOUR_NAME.">
+  <section class="page-hero container">
+    <p class="eyebrow">Projects</p>
+    <h1>Selected work.</h1>
+    <p>A growing collection of technical explorations and software projects.</p>
+  </section>
+
+  <section class="section container project-page-section">
+    <div class="project-grid">
+      {projects.map((project, index) => <ProjectCard project={project} index={index} />)}
+    </div>
+  </section>
+</BaseLayout>

@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="960" height="480" viewBox="0 0 960 480" role="img" aria-label="Example abstract diagram">
+  <rect width="960" height="480" fill="#f5f6f2"/>
+  <path d="M160 240H800M480 100V380" stroke="#315c3d" stroke-width="2"/>
+  <circle cx="320" cy="180" r="42" fill="#315c3d" opacity=".14" stroke="#315c3d" stroke-width="2"/>
+  <circle cx="640" cy="300" r="62" fill="#315c3d" opacity=".14" stroke="#315c3d" stroke-width="2"/>
+  <text x="160" y="70" fill="#315c3d" font-family="monospace" font-size="20">EXAMPLE_DIAGRAM / 01</text>
+</svg>

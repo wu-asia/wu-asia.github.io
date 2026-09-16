@@ -1,0 +1,31 @@
+---
+import type { Project } from '../data/projects';
+
+interface Props {
+  project: Project;
+  index?: number;
+}
+
+const { project, index } = Astro.props;
+const number = index === undefined ? undefined : String(index + 1).padStart(2, '0');
+---
+
+<article class="project-card">
+  <div class="project-card-heading">
+    {number && <span class="project-number">{number}</span>}
+    <div>
+      <div class="project-title-row">
+        <h3>{project.name}</h3>
+        <span class:list={['status', `status-${project.status.toLowerCase().replace(' ', '-')}`]}>{project.status}</span>
+      </div>
+      <p>{project.description}</p>
+    </div>
+  </div>
+  <ul class="tag-list" aria-label={`${project.name} technologies`}>
+    {project.technologies.map((technology) => <li>{technology}</li>)}
+  </ul>
+  <div class="project-links">
+    <a href={project.github} target="_blank" rel="noreferrer">GitHub <span aria-hidden="true">↗</span></a>
+    {project.demo && <a href={project.demo} target="_blank" rel="noreferrer">Demo <span aria-hidden="true">↗</span></a>}
+  </div>
+</article>

@@ -1,0 +1,76 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+
+const notes = (await getCollection('notes'))
+  .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
+const categories = [...new Set(notes.map((note) => note.data.category))].sort();
+const tags = [...new Set(notes.flatMap((note) => note.data.tags))].sort();
+---
+
+<BaseLayout title="Notes" description="Short technical learning notes.">
+  <section class="page-hero container">
+    <p class="eyebrow">Notes</p>
+    <h1>Short learning notes.</h1>
+    <p>A lightweight reference for ideas, commands, and concepts.</p>
+  </section>
+
+  <section class="section container notes-section">
+    <div class="note-filters" aria-label="Filter notes">
+      <label>
+        <span>Category</span>
+        <select data-category-filter>
+          <option value="">All categories</option>
+          {categories.map((category) => <option value={category}>{category}</option>)}
+        </select>
+      </label>
+      <label>
+        <span>Tag</span>
+        <select data-tag-filter>
+          <option value="">All tags</option>
+          {tags.map((tag) => <option value={tag}>{tag}</option>)}
+        </select>
+      </label>
+    </div>
+
+    <div class="note-list">
+      {notes.map((note) => (
+        <article class="note-item" data-note-category={note.data.category} data-note-tags={note.data.tags.join('|')}>
+          <time datetime={note.data.date.toISOString()}>{note.data.date.toLocaleDateString('en', { year: 'numeric', month: 'short', day: 'numeric' })}</time>
+          <div>
+            <p class="eyebrow">{note.data.category}</p>
+            <h2>{note.data.title}</h2>
+            <ul class="tag-list" aria-label={`${note.data.title} tags`}>{note.data.tags.map((tag) => <li>{tag}</li>)}</ul>
+          </div>
+        </article>
+      ))}
+    </div>
+    <p class="filter-empty" hidden>No notes match the selected filters.</p>
+  </section>
+</BaseLayout>
+
+<script>
+  const categorySelect = document.querySelector<HTMLSelectElement>('[data-category-filter]');
+  const tagSelect = document.querySelector<HTMLSelectElement>('[data-tag-filter]');
+  const notes = [...document.querySelectorAll<HTMLElement>('[data-note-category]')];
+  const emptyState = document.querySelector<HTMLElement>('.filter-empty');
+
+  function filterNotes() {
+    const category = categorySelect?.value ?? '';
+    const tag = tagSelect?.value ?? '';
+    let visibleCount = 0;
+
+    notes.forEach((note) => {
+      const matchesCategory = !category || note.dataset.noteCategory === category;
+      const matchesTag = !tag || note.dataset.noteTags?.split('|').includes(tag);
+      const visible = matchesCategory && matchesTag;
+      note.hidden = !visible;
+      if (visible) visibleCount += 1;
+    });
+
+    if (emptyState) emptyState.hidden = visibleCount > 0;
+  }
+
+  categorySelect?.addEventListener('change', filterNotes);
+  tagSelect?.addEventListener('change', filterNotes);
+</script>
