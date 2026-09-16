@@ -12,49 +12,49 @@ const latestPosts = (await getCollection('blog', ({ data }) => !data.draft))
 
 <BaseLayout title={site.name} description={site.introduction}>
   <section class="hero container">
-    <p class="eyebrow">Computer Science · 2026</p>
+    <p class="eyebrow" data-i18n="heroEyebrow">Computer Science · 2026</p>
     <h1>{site.name}</h1>
-    <p class="hero-role">{site.role}</p>
-    <p class="hero-introduction">{site.introduction}</p>
+    <p class="hero-role" data-translate-en={site.role} data-translate-zh={site.roleZh}>{site.role}</p>
+    <p class="hero-introduction" data-translate-en={site.introduction} data-translate-zh={site.introductionZh}>{site.introduction}</p>
     <div class="hero-actions">
-      <a class="button button-primary" href="#projects">View Projects <span aria-hidden="true">↓</span></a>
+      <a class="button button-primary" href="#projects"><span data-i18n="viewProjects">View Projects</span> <span aria-hidden="true">↓</span></a>
       <a class="button button-secondary" href={githubUrl} target="_blank" rel="noreferrer">GitHub <span aria-hidden="true">↗</span></a>
     </div>
   </section>
 
   <section id="about" class="section container about-section">
-    <p class="section-label">01 / About me</p>
+    <p class="section-label" data-i18n="aboutLabel">01 / About me</p>
     <div class="section-content about-content">
-      <h2>A learner drawn to the systems behind intelligent software.</h2>
-      <p>{site.bio}</p>
+      <h2 data-i18n="aboutHeading">A learner drawn to the systems behind intelligent software.</h2>
+      <p data-translate-en={site.bio} data-translate-zh={site.bioZh}>{site.bio}</p>
     </div>
   </section>
 
   <section class="section container exploring-section">
-    <p class="section-label">02 / Currently exploring</p>
+    <p class="section-label" data-i18n="exploringLabel">02 / Currently exploring</p>
     <div class="section-content">
       <ul class="exploring-list">
-        {exploring.map((item, index) => <li><span>{String(index + 1).padStart(2, '0')}</span>{item}</li>)}
+        {exploring.map((item, index) => <li><span>{String(index + 1).padStart(2, '0')}</span><b data-translate-en={item.en} data-translate-zh={item.zh}>{item.en}</b></li>)}
       </ul>
     </div>
   </section>
 
   <section id="projects" class="section container projects-section">
-    <div class="section-heading"><p class="section-label">03 / Featured projects</p><p>Selected work will appear here.</p></div>
+    <div class="section-heading"><p class="section-label" data-i18n="projectsLabel">03 / Featured projects</p><p data-i18n="projectsHint">Selected work will appear here.</p></div>
     <div class="project-list">{featuredProjects.map((project, index) => <ProjectCard project={project} index={index} />)}</div>
-    <a class="text-link" href="/projects">View all projects <span aria-hidden="true">→</span></a>
+    <a class="text-link" href="/projects"><span data-i18n="viewAllProjects">View all projects</span> <span aria-hidden="true">→</span></a>
   </section>
 
   <section class="section container stack-section">
-    <p class="section-label">04 / Tech stack</p>
+    <p class="section-label" data-i18n="stackLabel">04 / Tech stack</p>
     <div class="section-content"><ul class="tag-list stack-list">{techStack.map((technology) => <li>{technology}</li>)}</ul></div>
   </section>
 
   <section id="writing" class="section container posts-section">
-    <div class="section-heading"><p class="section-label">05 / Latest posts</p><p>Thoughts and notes, soon.</p></div>
+    <div class="section-heading"><p class="section-label" data-i18n="postsLabel">05 / Latest posts</p><p data-i18n="postsHint">Thoughts and notes, soon.</p></div>
     <div class="post-list">
-      {latestPosts.map((post) => <article class="post-item"><p>{post.data.date.toLocaleDateString('en', { year: 'numeric', month: 'short', day: 'numeric' })}</p><h3><a href={`/blog/${post.id}`}>{post.data.title}</a></h3><a href={`/blog/${post.id}`} aria-label={`Read ${post.data.title}`}>↗</a></article>)}
+      {latestPosts.map((post) => <article class="post-item"><p data-localized-date={post.data.date.toISOString()}>{post.data.date.toLocaleDateString('en', { year: 'numeric', month: 'short', day: 'numeric' })}</p><h3><a href={`/blog/${post.id}`} data-translate-en={post.data.title} data-translate-zh={post.data.titleZh}>{post.data.title}</a></h3><a href={`/blog/${post.id}`} aria-label={`Read ${post.data.title}`}>↗</a></article>)}
     </div>
-    <a class="text-link" href="/blog">View all posts <span aria-hidden="true">→</span></a>
+    <a class="text-link" href="/blog"><span data-i18n="viewAllPosts">View all posts</span> <span aria-hidden="true">→</span></a>
   </section>
 </BaseLayout>

@@ -1,7 +1,9 @@
 ---
 title: "Example note: algorithm study checklist"
+titleZh: "示例笔记：算法学习清单"
 date: 2026-09-16
 category: Algorithms
+categoryZh: 算法
 tags: [Example, Complexity, Study]
 ---
 

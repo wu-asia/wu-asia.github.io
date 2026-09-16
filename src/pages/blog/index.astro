@@ -8,20 +8,20 @@ const posts = (await getCollection('blog', ({ data }) => !data.draft))
 
 <BaseLayout title="Blog" description="Example technical writing and notes.">
   <section class="page-hero container">
-    <p class="eyebrow">Blog</p>
-    <h1>Notes and writing.</h1>
-    <p>Example content for the future technical blog.</p>
+    <p class="eyebrow" data-i18n="blogEyebrow">Blog</p>
+    <h1 data-i18n="blogHeading">Notes and writing.</h1>
+    <p data-i18n="blogDescription">Example content for the future technical blog.</p>
   </section>
 
   <section class="section container blog-list-section">
     <div class="blog-list">
       {posts.map((post) => (
         <article class="blog-list-item">
-          <time datetime={post.data.date.toISOString()}>{post.data.date.toLocaleDateString('en', { year: 'numeric', month: 'short', day: 'numeric' })}</time>
+          <time datetime={post.data.date.toISOString()} data-localized-date={post.data.date.toISOString()}>{post.data.date.toLocaleDateString('en', { year: 'numeric', month: 'short', day: 'numeric' })}</time>
           <div>
-            <p class="eyebrow">{post.data.category}</p>
-            <h2><a href={`/blog/${post.id}`}>{post.data.title}</a></h2>
-            <p>{post.data.description}</p>
+            <p class="eyebrow" data-translate-en={post.data.category} data-translate-zh={post.data.categoryZh}>{post.data.category}</p>
+            <h2><a href={`/blog/${post.id}`} data-translate-en={post.data.title} data-translate-zh={post.data.titleZh}>{post.data.title}</a></h2>
+            <p data-translate-en={post.data.description} data-translate-zh={post.data.descriptionZh}>{post.data.description}</p>
             <ul class="tag-list" aria-label={`${post.data.title} tags`}>{post.data.tags.map((tag) => <li>{tag}</li>)}</ul>
           </div>
           <a class="post-arrow" href={`/blog/${post.id}`} aria-label={`Read ${post.data.title}`}>↗</a>

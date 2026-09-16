@@ -1,9 +1,12 @@
 ---
 title: "Example: Markdown feature reference"
+titleZh: "示例：Markdown 功能参考"
 description: "Example content used to verify the technical blog's Markdown rendering."
+descriptionZh: "用于验证技术博客 Markdown 渲染的示例内容。"
 date: 2026-09-16
 tags: [Example, Markdown, Documentation]
 category: Example Content
+categoryZh: 示例内容
 draft: false
 ---
 

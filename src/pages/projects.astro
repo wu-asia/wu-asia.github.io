@@ -1,14 +1,15 @@
 ---
 import ProjectCard from '../components/ProjectCard.astro';
+import { site } from '../config/site';
 import { projects } from '../data/projects';
 import BaseLayout from '../layouts/BaseLayout.astro';
 ---
 
-<BaseLayout title="Projects" description="Selected projects by YOUR_NAME.">
+<BaseLayout title="Projects" description={`Selected projects by ${site.name}.`}>
   <section class="page-hero container">
-    <p class="eyebrow">Projects</p>
-    <h1>Selected work.</h1>
-    <p>A growing collection of technical explorations and software projects.</p>
+    <p class="eyebrow" data-i18n="projectsEyebrow">Projects</p>
+    <h1 data-i18n="projectsHeading">Selected work.</h1>
+    <p data-i18n="projectsDescription">A growing collection of technical explorations and software projects.</p>
   </section>
 
   <section class="section container project-page-section">

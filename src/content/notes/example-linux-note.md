@@ -1,7 +1,9 @@
 ---
 title: "Example note: Linux command reference"
+titleZh: "示例笔记：Linux 命令参考"
 date: 2026-09-14
 category: Linux
+categoryZh: Linux
 tags: [Example, Shell, Commands]
 ---
 

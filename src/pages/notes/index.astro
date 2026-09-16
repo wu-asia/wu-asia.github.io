@@ -4,30 +4,32 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
 
 const notes = (await getCollection('notes'))
   .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
-const categories = [...new Set(notes.map((note) => note.data.category))].sort();
+const categories = [...new Map(notes.map((note) => [note.data.category, note.data.categoryZh])).entries()]
+  .map(([en, zh]) => ({ en, zh }))
+  .sort((a, b) => a.en.localeCompare(b.en));
 const tags = [...new Set(notes.flatMap((note) => note.data.tags))].sort();
 ---
 
 <BaseLayout title="Notes" description="Short technical learning notes.">
   <section class="page-hero container">
-    <p class="eyebrow">Notes</p>
-    <h1>Short learning notes.</h1>
-    <p>A lightweight reference for ideas, commands, and concepts.</p>
+    <p class="eyebrow" data-i18n="notesEyebrow">Notes</p>
+    <h1 data-i18n="notesHeading">Short learning notes.</h1>
+    <p data-i18n="notesDescription">A lightweight reference for ideas, commands, and concepts.</p>
   </section>
 
   <section class="section container notes-section">
     <div class="note-filters" aria-label="Filter notes">
       <label>
-        <span>Category</span>
+        <span data-i18n="category">Category</span>
         <select data-category-filter>
-          <option value="">All categories</option>
-          {categories.map((category) => <option value={category}>{category}</option>)}
+          <option value="" data-i18n="allCategories">All categories</option>
+          {categories.map((category) => <option value={category.en} data-translate-en={category.en} data-translate-zh={category.zh}>{category.en}</option>)}
         </select>
       </label>
       <label>
-        <span>Tag</span>
+        <span data-i18n="tag">Tag</span>
         <select data-tag-filter>
-          <option value="">All tags</option>
+          <option value="" data-i18n="allTags">All tags</option>
           {tags.map((tag) => <option value={tag}>{tag}</option>)}
         </select>
       </label>
@@ -36,16 +38,16 @@ const tags = [...new Set(notes.flatMap((note) => note.data.tags))].sort();
     <div class="note-list">
       {notes.map((note) => (
         <article class="note-item" data-note-category={note.data.category} data-note-tags={note.data.tags.join('|')}>
-          <time datetime={note.data.date.toISOString()}>{note.data.date.toLocaleDateString('en', { year: 'numeric', month: 'short', day: 'numeric' })}</time>
+          <time datetime={note.data.date.toISOString()} data-localized-date={note.data.date.toISOString()}>{note.data.date.toLocaleDateString('en', { year: 'numeric', month: 'short', day: 'numeric' })}</time>
           <div>
-            <p class="eyebrow">{note.data.category}</p>
-            <h2>{note.data.title}</h2>
+            <p class="eyebrow" data-translate-en={note.data.category} data-translate-zh={note.data.categoryZh}>{note.data.category}</p>
+            <h2 data-translate-en={note.data.title} data-translate-zh={note.data.titleZh}>{note.data.title}</h2>
             <ul class="tag-list" aria-label={`${note.data.title} tags`}>{note.data.tags.map((tag) => <li>{tag}</li>)}</ul>
           </div>
         </article>
       ))}
     </div>
-    <p class="filter-empty" hidden>No notes match the selected filters.</p>
+    <p class="filter-empty" hidden data-i18n="noNotes">No notes match the selected filters.</p>
   </section>
 </BaseLayout>
 

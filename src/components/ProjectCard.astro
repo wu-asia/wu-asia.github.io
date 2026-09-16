@@ -15,17 +15,17 @@ const number = index === undefined ? undefined : String(index + 1).padStart(2, '
     {number && <span class="project-number">{number}</span>}
     <div>
       <div class="project-title-row">
-        <h3>{project.name}</h3>
-        <span class:list={['status', `status-${project.status.toLowerCase().replace(' ', '-')}`]}>{project.status}</span>
+        <h3 data-translate-en={project.name} data-translate-zh={project.nameZh}>{project.name}</h3>
+        <span class:list={['status', `status-${project.status.toLowerCase().replace(' ', '-')}`]} data-i18n={project.status === 'Planned' ? 'planned' : project.status === 'In Progress' ? 'inProgress' : 'complete'}>{project.status}</span>
       </div>
-      <p>{project.description}</p>
+      <p data-translate-en={project.description} data-translate-zh={project.descriptionZh}>{project.description}</p>
     </div>
   </div>
   <ul class="tag-list" aria-label={`${project.name} technologies`}>
     {project.technologies.map((technology) => <li>{technology}</li>)}
   </ul>
   <div class="project-links">
-    <a href={project.github} target="_blank" rel="noreferrer">GitHub <span aria-hidden="true">↗</span></a>
-    {project.demo && <a href={project.demo} target="_blank" rel="noreferrer">Demo <span aria-hidden="true">↗</span></a>}
+    <a href={project.github} target="_blank" rel="noreferrer"><span data-i18n="github">GitHub</span> <span aria-hidden="true">↗</span></a>
+    {project.demo && <a href={project.demo} target="_blank" rel="noreferrer"><span data-i18n="demo">Demo</span> <span aria-hidden="true">↗</span></a>}
   </div>
 </article>

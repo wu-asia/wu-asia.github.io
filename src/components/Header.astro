@@ -1,5 +1,6 @@
 ---
 import { site } from '../config/site';
+import LanguageToggle from './LanguageToggle.astro';
 
 const currentPath = Astro.url.pathname;
 ---
@@ -8,12 +9,13 @@ const currentPath = Astro.url.pathname;
   <div class="container header-content">
     <a class="site-logo" href="/" aria-label={`${site.name} home`}>{site.name}</a>
     <nav class="site-nav" aria-label="Primary navigation">
-      <a href="/#about" aria-current={currentPath === '/' ? 'page' : undefined}>About</a>
-      <a href="/projects" aria-current={currentPath === '/projects' ? 'page' : undefined}>Projects</a>
-      <a href="/blog" aria-current={currentPath.startsWith('/blog') ? 'page' : undefined}>Writing</a>
-      <a href="/notes" aria-current={currentPath === '/notes' ? 'page' : undefined}>Notes</a>
+      <a href="/#about" aria-current={currentPath === '/' ? 'page' : undefined} data-i18n="navAbout">About</a>
+      <a href="/projects" aria-current={currentPath === '/projects' ? 'page' : undefined} data-i18n="navProjects">Projects</a>
+      <a href="/blog" aria-current={currentPath.startsWith('/blog') ? 'page' : undefined} data-i18n="navWriting">Writing</a>
+      <a href="/notes" aria-current={currentPath === '/notes' ? 'page' : undefined} data-i18n="navNotes">Notes</a>
     </nav>
-    <span class="header-status" aria-label="Website status">Available</span>
+    <span class="header-status" aria-label="Website status" data-i18n="available">Available</span>
+    <LanguageToggle />
     <button class="theme-toggle" type="button" data-theme-toggle aria-label="Change color theme">
       <span aria-hidden="true">◐</span>
       <span data-theme-label>System</span>

@@ -1,9 +1,12 @@
 ---
 title: "Example: A learning log template"
+titleZh: "示例：学习日志模板"
 description: "A second example post for testing the list view and article layout."
+descriptionZh: "用于验证列表与文章布局的第二篇示例文章。"
 date: 2026-09-15
 tags: [Example, Learning, Notes]
 category: Example Content
+categoryZh: 示例内容
 draft: false
 ---
 
