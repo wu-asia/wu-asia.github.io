@@ -12,7 +12,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
     <p data-i18n="projectsDescription">A growing collection of technical explorations and software projects.</p>
   </section>
 
-  <section class="section container project-page-section">
+  <section class="section container project-page-section" data-reveal>
     <div class="project-grid">
       {projects.map((project, index) => <ProjectCard project={project} index={index} />)}
     </div>

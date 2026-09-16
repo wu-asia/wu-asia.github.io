@@ -17,7 +17,7 @@ const tags = [...new Set(notes.flatMap((note) => note.data.tags))].sort();
     <p data-i18n="notesDescription">A lightweight reference for ideas, commands, and concepts.</p>
   </section>
 
-  <section class="section container notes-section">
+  <section class="section container notes-section" data-reveal>
     <div class="note-filters" aria-label="Filter notes">
       <label>
         <span data-i18n="category">Category</span>

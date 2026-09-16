@@ -2,6 +2,7 @@ const githubUsername = 'wu-asia';
 
 export const site = {
   name: 'WU YAZHOU',
+  nameZh: '吴亚洲',
   bio: 'Computer science student interested in algorithms, artificial intelligence, machine learning, and software development.',
   bioZh: '对算法、人工智能、机器学习和软件开发感兴趣的计算机科学学生。',
   githubUsername,

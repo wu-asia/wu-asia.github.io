@@ -13,7 +13,7 @@ const latestPosts = (await getCollection('blog', ({ data }) => !data.draft))
 <BaseLayout title={site.name} description={site.introduction}>
   <section class="hero container">
     <p class="eyebrow" data-i18n="heroEyebrow">Computer Science · 2026</p>
-    <h1>{site.name}</h1>
+    <h1 data-translate-en={site.name} data-translate-zh={site.nameZh}>{site.name}</h1>
     <p class="hero-role" data-translate-en={site.role} data-translate-zh={site.roleZh}>{site.role}</p>
     <p class="hero-introduction" data-translate-en={site.introduction} data-translate-zh={site.introductionZh}>{site.introduction}</p>
     <div class="hero-actions">
@@ -22,7 +22,7 @@ const latestPosts = (await getCollection('blog', ({ data }) => !data.draft))
     </div>
   </section>
 
-  <section id="about" class="section container about-section">
+  <section id="about" class="section container about-section" data-reveal>
     <p class="section-label" data-i18n="aboutLabel">01 / About me</p>
     <div class="section-content about-content">
       <h2 data-i18n="aboutHeading">A learner drawn to the systems behind intelligent software.</h2>
@@ -30,7 +30,7 @@ const latestPosts = (await getCollection('blog', ({ data }) => !data.draft))
     </div>
   </section>
 
-  <section class="section container exploring-section">
+  <section class="section container exploring-section" data-reveal>
     <p class="section-label" data-i18n="exploringLabel">02 / Currently exploring</p>
     <div class="section-content">
       <ul class="exploring-list">
@@ -39,18 +39,18 @@ const latestPosts = (await getCollection('blog', ({ data }) => !data.draft))
     </div>
   </section>
 
-  <section id="projects" class="section container projects-section">
+  <section id="projects" class="section container projects-section" data-reveal>
     <div class="section-heading"><p class="section-label" data-i18n="projectsLabel">03 / Featured projects</p><p data-i18n="projectsHint">Selected work will appear here.</p></div>
     <div class="project-list">{featuredProjects.map((project, index) => <ProjectCard project={project} index={index} />)}</div>
     <a class="text-link" href="/projects"><span data-i18n="viewAllProjects">View all projects</span> <span aria-hidden="true">→</span></a>
   </section>
 
-  <section class="section container stack-section">
+  <section class="section container stack-section" data-reveal>
     <p class="section-label" data-i18n="stackLabel">04 / Tech stack</p>
     <div class="section-content"><ul class="tag-list stack-list">{techStack.map((technology) => <li>{technology}</li>)}</ul></div>
   </section>
 
-  <section id="writing" class="section container posts-section">
+  <section id="writing" class="section container posts-section" data-reveal>
     <div class="section-heading"><p class="section-label" data-i18n="postsLabel">05 / Latest posts</p><p data-i18n="postsHint">Thoughts and notes, soon.</p></div>
     <div class="post-list">
       {latestPosts.map((post) => <article class="post-item"><p data-localized-date={post.data.date.toISOString()}>{post.data.date.toLocaleDateString('en', { year: 'numeric', month: 'short', day: 'numeric' })}</p><h3><a href={`/blog/${post.id}`} data-translate-en={post.data.title} data-translate-zh={post.data.titleZh}>{post.data.title}</a></h3><a href={`/blog/${post.id}`} aria-label={`Read ${post.data.title}`}>↗</a></article>)}
