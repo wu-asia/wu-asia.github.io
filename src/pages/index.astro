@@ -13,7 +13,7 @@ const latestPosts = (await getCollection('blog', ({ data }) => !data.draft))
 <BaseLayout title={site.name} description={site.introduction}>
   <section class="hero container">
     <p class="eyebrow" data-i18n="heroEyebrow">Computer Science · 2026</p>
-    <h1>{site.name}</h1>
+    <h1 data-translate-en={site.name} data-translate-zh={site.nameZh}>{site.name}</h1>
     <p class="hero-role" data-translate-en={site.role} data-translate-zh={site.roleZh}>{site.role}</p>
     <p class="hero-introduction" data-translate-en={site.introduction} data-translate-zh={site.introductionZh}>{site.introduction}</p>
     <div class="hero-actions">

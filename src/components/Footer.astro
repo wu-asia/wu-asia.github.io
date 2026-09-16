@@ -4,7 +4,7 @@ import { githubUrl, site } from '../config/site';
 
 <footer class="site-footer">
   <div class="container footer-content">
-    <span>© {new Date().getFullYear()} {site.name}</span>
+    <span>© {new Date().getFullYear()} <span data-translate-en={site.name} data-translate-zh={site.nameZh}>{site.name}</span></span>
     <a href={githubUrl} target="_blank" rel="noreferrer">GitHub</a>
   </div>
 </footer>
