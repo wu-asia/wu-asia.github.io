@@ -4,7 +4,17 @@ import { githubUrl, site } from '../config/site';
 
 <footer class="site-footer">
   <div class="container footer-content">
-    <span>© {new Date().getFullYear()} <span data-translate-en={site.name} data-translate-zh={site.nameZh}>{site.name}</span></span>
-    <a href={githubUrl} target="_blank" rel="noreferrer">GitHub</a>
+    <div class="footer-identity">
+      <a class="footer-name" href="#top" data-translate-en={site.name} data-translate-zh={site.nameZh}>{site.name}</a>
+      <span>© {new Date().getFullYear()}</span>
+    </div>
+    <div class="footer-links">
+      <a href={githubUrl} target="_blank" rel="noreferrer">GitHub <span aria-hidden="true">↗</span></a>
+      <a href="#top" data-i18n="backToTop">Back to top</a>
+    </div>
+    <div class="footer-meta">
+      <a href="https://astro.build/" target="_blank" rel="noreferrer" data-i18n="builtWith">Built with Astro</a>
+      <a href="https://pages.github.com/" target="_blank" rel="noreferrer" data-i18n="hostedOn">GitHub Pages</a>
+    </div>
   </div>
 </footer>

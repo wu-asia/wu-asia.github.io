@@ -10,7 +10,7 @@ export const copy = {
     blogEyebrow: 'Blog', blogHeading: 'Notes and writing.', blogDescription: 'Example content for the future technical blog.',
     notesEyebrow: 'Notes', notesHeading: 'Short learning notes.', notesDescription: 'A lightweight reference for ideas, commands, and concepts.',
     category: 'Category', allCategories: 'All categories', tag: 'Tag', allTags: 'All tags', noNotes: 'No notes match the selected filters.',
-    github: 'GitHub', demo: 'Demo', planned: 'Planned', inProgress: 'In progress', complete: 'Complete',
+    github: 'GitHub', demo: 'Demo', planned: 'Planned', inProgress: 'In progress', complete: 'Complete', menu: 'Menu', backToTop: 'Back to top', builtWith: 'Built with Astro', hostedOn: 'GitHub Pages', visualAlgorithms: 'Algorithms', visualAi: 'AI', visualCode: 'Code', visualResearch: 'Research',
   },
   zh: {
     languageSwitch: 'English',
@@ -23,7 +23,7 @@ export const copy = {
     blogEyebrow: '博客', blogHeading: '思考与记录。', blogDescription: '未来技术博客的示例内容。',
     notesEyebrow: '笔记', notesHeading: '简短学习笔记。', notesDescription: '用于记录想法、命令和概念的轻量参考。',
     category: '分类', allCategories: '全部分类', tag: '标签', allTags: '全部标签', noNotes: '没有符合筛选条件的笔记。',
-    github: 'GitHub', demo: '演示', planned: '计划中', inProgress: '进行中', complete: '已完成',
+    github: 'GitHub', demo: '演示', planned: '计划中', inProgress: '进行中', complete: '已完成', menu: '菜单', backToTop: '返回顶部', builtWith: '由 Astro 构建', hostedOn: 'GitHub Pages 托管', visualAlgorithms: '算法', visualAi: '人工智能', visualCode: '代码', visualResearch: '研究',
   },
 } as const;
 

@@ -26,4 +26,9 @@ export const exploring = [
   { en: 'Java', zh: 'Java' },
   { en: 'Linux', zh: 'Linux' },
 ] as const;
-export const techStack = ['Python', 'C++', 'TypeScript', 'Astro', 'Git', 'Linux', 'Docker', 'SQL'] as const;
+export const techStack = [
+  { label: 'Languages', labelZh: '语言', items: ['Python', 'C++'] },
+  { label: 'Web', labelZh: 'Web', items: ['TypeScript', 'Astro'] },
+  { label: 'Tools', labelZh: '工具', items: ['Git', 'Linux', 'Docker'] },
+  { label: 'Data', labelZh: '数据', items: ['SQL'] },
+] as const;

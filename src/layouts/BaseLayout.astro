@@ -27,6 +27,9 @@ const canonicalUrl = new URL(Astro.url.pathname, site.url).toString();
     <meta name="theme-color" content="#fcfcfb" media="(prefers-color-scheme: light)" />
     <meta name="theme-color" content="#141512" media="(prefers-color-scheme: dark)" />
     <link rel="canonical" href={canonicalUrl} />
+    <link rel="alternate" hreflang="en" href={canonicalUrl} />
+    <link rel="alternate" hreflang="zh-CN" href={canonicalUrl} />
+    <link rel="alternate" hreflang="x-default" href={canonicalUrl} />
     <meta property="og:type" content={type} />
     <meta property="og:site_name" content={site.name} />
     <meta property="og:title" content={pageTitle} />

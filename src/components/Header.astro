@@ -15,11 +15,22 @@ const currentPath = Astro.url.pathname;
       <a href="/notes" aria-current={currentPath === '/notes' ? 'page' : undefined} data-i18n="navNotes">Notes</a>
     </nav>
     <span class="header-status" aria-label="Website status" data-i18n="available">Available</span>
-    <LanguageToggle />
-    <button class="theme-toggle" type="button" data-theme-toggle aria-label="Change color theme">
-      <span aria-hidden="true">◐</span>
-      <span data-theme-label>System</span>
-    </button>
+    <div class="header-controls">
+      <LanguageToggle />
+      <button class="theme-toggle" type="button" data-theme-toggle aria-label="Change color theme">
+        <span aria-hidden="true">◐</span>
+        <span data-theme-label>System</span>
+      </button>
+    </div>
+    <details class="mobile-nav">
+      <summary aria-label="Open navigation"><span data-i18n="menu">Menu</span><span class="mobile-nav-icon" aria-hidden="true"></span></summary>
+      <nav aria-label="Mobile primary navigation">
+        <a href="/#about" data-i18n="navAbout">About</a>
+        <a href="/projects" data-i18n="navProjects">Projects</a>
+        <a href="/blog" data-i18n="navWriting">Writing</a>
+        <a href="/notes" data-i18n="navNotes">Notes</a>
+      </nav>
+    </details>
   </div>
 </header>
 
