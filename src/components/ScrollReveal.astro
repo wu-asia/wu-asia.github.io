@@ -1,0 +1,19 @@
+<script>
+  const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+  const elements = [...document.querySelectorAll<HTMLElement>('[data-reveal]')];
+
+  if (!reducedMotion.matches && elements.length > 0) {
+    document.documentElement.classList.add('has-scroll-reveal');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (!entry.isIntersecting) return;
+        entry.target.classList.add('is-revealed');
+        observer.unobserve(entry.target);
+      });
+    }, { threshold: 0.1, rootMargin: '0px 0px -4% 0px' });
+
+    elements.forEach((element) => observer.observe(element));
+  } else {
+    elements.forEach((element) => element.classList.add('is-revealed'));
+  }
+</script>

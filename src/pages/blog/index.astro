@@ -13,7 +13,7 @@ const posts = (await getCollection('blog', ({ data }) => !data.draft))
     <p data-i18n="blogDescription">Example content for the future technical blog.</p>
   </section>
 
-  <section class="section container blog-list-section">
+  <section class="section container blog-list-section" data-reveal>
     <div class="blog-list">
       {posts.map((post) => (
         <article class="blog-list-item">

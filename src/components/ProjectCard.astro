@@ -10,7 +10,7 @@ const { project, index } = Astro.props;
 const number = index === undefined ? undefined : String(index + 1).padStart(2, '0');
 ---
 
-<article class="project-card">
+<article class="project-card" data-reveal style={`--reveal-delay: ${index === undefined ? 0 : index * 70}ms`}>
   <div class="project-card-heading">
     {number && <span class="project-number">{number}</span>}
     <div>
